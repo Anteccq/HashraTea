@@ -8,7 +8,7 @@ SHA256 と MD5 に対応しています。
 
 ## Quick Start
 ```
-$ hTea -sha256 filename
+$ hTea sha256 filename
 e3bebea8a1f7cd7f6fc98b9bc47f31a11ac1942c62093933d98d36433957389b // Hash value
 ```
 
