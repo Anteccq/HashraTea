@@ -5,8 +5,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Authors>AntiqueR</Authors>
     <Company />
-    <Product />
+    <Product>HashTea</Product>
     <Copyright>(c) AntiqueR All rights reserved.</Copyright>
+    <AssemblyName>hTea</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

@@ -17,23 +17,27 @@ namespace HashraTea
         }
 
         [Command("sha256")]
-        public async Task Sha256([Option(0)] string filePath)
-        {
-            var path = Path.GetFullPath(filePath);
-            var data = await File.ReadAllBytesAsync(path);
-            var crypto = new SHA256CryptoServiceProvider();
-            var hash = crypto.ComputeHash(data);
-            WriteBytes(hash);
-        }
+        public async Task Sha256([Option(0)] string filePath) =>
+            await HashAsync(new SHA256CryptoServiceProvider(), filePath);
 
         [Command("md5")]
-        public async Task Md5([Option(0)] string filePath)
+        public async Task Md5([Option(0)] string filePath) => 
+            await HashAsync(new MD5CryptoServiceProvider(), filePath);
+
+        private static async Task HashAsync(HashAlgorithm alg, string filePath)
         {
-            var path = Path.GetFullPath(filePath);
-            var data = await File.ReadAllBytesAsync(path);
-            var crypto = new MD5CryptoServiceProvider();
-            var hash = crypto.ComputeHash(data);
-            WriteBytes(hash);
+            try
+            {
+                var path = Path.GetFullPath(filePath);
+                var data = await File.ReadAllBytesAsync(path);
+                var hash = alg.ComputeHash(data);
+                WriteBytes(hash);
+            }
+            catch
+            {
+                Console.WriteLine("HashTea: File not Found.");
+            }
+
         }
 
         private static void WriteBytes(IEnumerable<byte> bytes)
